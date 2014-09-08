@@ -1,0 +1,32 @@
+<html>
+
+	<head>
+		<title>Hello</title>
+	</head>
+	<body>
+		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+        <script type="text/javascript" charset="utf-8" src="lib/client.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+					
+				$.erpserver.setup({
+					server : 'http://localhost'
+				});
+				$.erpserver.getDatabases(function(result){
+					console.log(result);
+				});
+				$.erpserver.auth(function(result){
+					console.dir(result);
+					context  = result.result.user_context;
+					//console.dir(result.result.user_context);
+					$.erpserver.create(function(result,context){
+						console.log(result);
+					},context);
+				});
+				
+              
+			});
+		</script>
+	</body>
+</html>
